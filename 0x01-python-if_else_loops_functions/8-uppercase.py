@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 '''Prints a string in uppercase followed by a new line'''
+
+
 def uppercase(str):
     for i in str:
         if ord(i) >= 97 and ord(i) <= 122:

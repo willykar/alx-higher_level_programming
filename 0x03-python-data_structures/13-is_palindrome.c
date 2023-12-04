@@ -3,23 +3,26 @@
 #include <stdio.h>
 
 /**
-*add_nodeint - A function that adds a new node at
-the beginning of a listint_t list
-*@head_butt: The head of listint_t
-*@n: number of type integer to add in listint_t list
-*Return: (address of the new element, or NULL if it fails)
-*/
-listint_t *add_nodeint(listint_t **head_butt, const int n)
+ * reverse_listint - A function that reverses a linked list
+ * @head: The pointer to the first node
+ *
+ * Return: (A pointer to the first node in the new list)
+ */
+void reverse_listint(listint_t **head)
 {
-	listint_t *new;
+	listint_t *prev = NULL;
+	listint_t *current = *head;
+	listint_t *next = NULL;
 
-	new = malloc(sizeof(listint_t));
-	if (new == NULL)
-		return (NULL);
-	new->n = n;
-	new->next = *head_butt;
-	*head_butt = new;
-	return (new);
+	while (current)
+	{
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+
+	*head = prev;
 }
 /**
 *is_palindrome - A function that identifies if a syngle
@@ -27,29 +30,44 @@ linked list is a palindrome
 *@head_butt: The head of listint_t
 *Return:(1) if it is palindrome or (0)
 */
-int is_palindrome(listint_t **head_but)
+int is_palindrome(listint_t **head)
 {
-	listint_t *head2 = *head_but;
-	listint_t *aux = NULL, *aux2 = NULL;
+	listint_t *slow = *head, *fas = *head, *temp = *head, *dup = NULL;
 
-	if (*head_but == NULL || head2->next == NULL)
+	if (*head == NULL || (*head)->next == NULL)
 		return (1);
-	while (head2 != NULL)
+
+	while (1)
 	{
-		add_nodeint(&aux, head2->n);
-		head2 = head2->next;
-	}
-	aux2 = aux;
-	while (*head_but != NULL)
-	{
-		if ((*head_but)->n != aux2->n)
+		fas = fas->next->next;
+		if (!fas)
 		{
-			free_listint(aux);
-			return (0);
+			dup = slow->next;
+			break;
 		}
-		*head_but = (*head_but)->next;
-		aux2 = aux2->next;
+		if (!fas->next)
+		{
+			dup = slow->next->next;
+			break;
+		}
+		slow = slow->next;
 	}
-	free_listint(aux);
-	return (1);
+
+	reverse_listint(&dup);
+
+	while (dup && temp)
+	{
+		if (temp->n == dup->n)
+		{
+			dup = dup->next;
+			temp = temp->next;
+		}
+		else
+			return (0);
+	}
+
+	if (!dup)
+		return (1);
+
+	return (0);
 }

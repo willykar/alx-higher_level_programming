@@ -9,13 +9,17 @@
  * info about Python lists
  * @p: The python list
  */
-void print_python_list_info(PyObject *p)
-{
-	int element;
+void print_python_list_info(PyObject *p) {
+    Py_ssize_t size, alloc;
+    PyListObject *list = (PyListObject *)p;
 
-	printf("[*] Size of the Python List = %u\n", Py_SIZE(p));
-	printf("[*] Allocated = %u\n", ((PyListObject *)p)->allocated);
-	for (element = 0; element < Py_SIZE(p); element++)
-		printf("Element %d: %s\n", element,
-				Py_TYPE(PyList_GetItem(p, element))->tp_name);
+    size = PyList_Size(p);
+    alloc = list->allocated;
+
+    printf("[*] Size of the Python List = %zd\n", size);
+    printf("[*] Allocated = %zd\n", alloc);
+
+    for (Py_ssize_t i = 0; i < size; ++i) {
+        printf("Element %zd: %s\n", i, Py_TYPE(list->ob_item[i])->tp_name);
+    }
 }

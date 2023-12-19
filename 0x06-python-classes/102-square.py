@@ -25,26 +25,26 @@ class Square:
         '''method that returns area'''
         return (self.__size * self.__size)
 
-    def __equal__(self, other):
+    def __eq__(self, other):
         """Comparision to a Square"""
         return self.area() == other.area()
 
-    def __noteq__(self, other):
+    def __ne__(self, other):
         """Comparison to a Square"""
         return self.area() != other.area()
 
-    def __lest__(self, other):
+    def __lt__(self, other):
         """The < comparison to a Square"""
         return self.area() < other.area()
 
-    def __leseq__(self, other):
+    def __le__(self, other):
         """The <= comparison to a Square."""
         return self.area() <= other.area()
 
-    def __greater__(self, other):
+    def __gt__(self, other):
         """> comparison to a Square."""
         return self.area() > other.area()
 
-    def __grequal__(self, other):
+    def __ge__(self, other):
         """>= compmarison to a Square."""
         return self.area() >= other.area()

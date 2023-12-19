@@ -25,7 +25,7 @@ class Square:
         '''method that returns area'''
         return (self.__size * self.__size)
 
-     def __equal__(self, other):
+    def __equal__(self, other):
         """Comparision to a Square"""
         return self.area() == other.area()
 

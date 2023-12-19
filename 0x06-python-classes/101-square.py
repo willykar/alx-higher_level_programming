@@ -3,83 +3,61 @@
 
 
 class Square:
-    """Represen class square."""
+    """Class square"""
 
-    def __init__(self, size=0, position=(0, 0)):
-        """Initializes a square instance
-        """
-        if not isinstance(size, int):
+    def __init__(self, size=0, position=(0,0)):
+        '''New square'''
+
+    @property
+    def size(self):
+        """Gets the current size of the square"""
+        return (self.__size)
+
+    @size.setter
+    def size(self, value):
+        if not isinstance(value, int):
             raise TypeError("size must be an integer")
-        if (size < 0):
+        elif value < 0:
             raise ValueError("size must be >= 0")
-        self.size = size
+        self.__size = value
 
-        if not isinstance(position, tuple):
+    @property
+    def position(self):
+        """Gets the current position of the square"""
+        return (self.__position)
+
+    @position.setter
+    def position(self, value):
+        if (not isinstance(value, tuple) or
+                len(value) != 2 or
+                not all(isinstance(number, int) for number in value) or
+                not all(number >= 0 for number in value)):
             raise TypeError("position must be a tuple of 2 positive integers")
-        if len(position) != 2 or not all(isinstance(v, int) for v in position):
-            raise TypeError("position must be a tuple of 2 positive integers")
-        if not all(num >= 0 for num in position):
-            raise TypeError("position must be a tuple of 2 positive integers")
-        self.__position = position
+        self.__position = value
 
-        def __str__(self):
-            """Prints a square to stdout """
-            square = []
-            if self.__size == 0:
-                return ""
+    def area(self):
+        """Return area of the square"""
+        return (self.__size * self.__size)
 
-            [square.append("\n") for a in range(self.position[1])]
-            for a in range(self.__size):
-                for b in range(self.__position[0]):
-                    square.append(" ")
-                    for c in range(self.__size):
-                        square.append("#")
-                        if a < (self.__size - 1):
-                            square.append("\n")
-                            return "".join(square)
+    def my_print(self):
+        """Prints square with the # character"""
+        if self.__size == 0:
+            print("")
+            return
 
-        def area(self):
-            """Returns area of the square"""
-            return (self.__size * self.__size)
+        [print("") for a in range(0, self.__position[1])]
+        for a in range(0, self.__size):
+            [print(" ", end="") for b in range(0, self.__position[0])]
+            [print("#", end="") for c in range(0, self.__size)]
+            print("")
 
-        @property
-        def size(self):
-            """Gets the current size of the square"""
-            return (self.__size)
-
-        @size.setter
-        def size(self, value):
-            if not isinstance(value, int):
-                raise TypeError("size must be an integer")
-            if value < 0:
-                raise ValueError("size must be >= 0")
-            self.__size = value
-
-        @property
-        def position(self):
-            """Gets the current position of the square"""
-            return (self.__position)
-
-        @position.setter
-        def position(self, value):
-            if (not isinstance(value, tuple) or
-                    len(value) != 2 or
-                    not all(isinstance(number, int) for number in value) or
-                    not all(number >= 0 for number in value)):
-                raise TypeError("position must be a tuple"
-                        "of 2 positive integers")
-            self.__position = value
-
-            def my_print(self):
-                """Prints the # character"""
-                if self.__size == 0:
-                    print()
-                    return
-
-                [print() for a in range(self.position[1])]
-                for a in range(self.__size):
-                    for a in range(self.__position[0]):
-                        print(" ", end="")
-                        for a in range(self.__size):
-                            print("#", end="")
-                            print()
+    def __str__(self):
+        """Print() representation of a Square"""
+        if self.__size != 0:
+            [print("") for a in range(0, self.__position[1])]
+        for a in range(0, self.__size):
+            [print(" ", end="") for b in range(0, self.__position[0])]
+            [print("#", end="") for c in range(0, self.__size)]
+            if a != self.__size - 1:
+                print("")
+        return ("")

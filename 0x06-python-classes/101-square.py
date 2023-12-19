@@ -5,7 +5,7 @@
 class Square:
     """Class square"""
 
-    def __init__(self, size=0, position=(0,0)):
+    def __init__(self, size=0, position=(0, 0)):
         '''New square'''
 
     @property

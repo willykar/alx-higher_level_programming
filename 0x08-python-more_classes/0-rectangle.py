@@ -1,5 +1,5 @@
 #!/usr/bin/python3
 
-def Rectangle:
+class Rectangle:
     """ Class Rectangle """
     pass

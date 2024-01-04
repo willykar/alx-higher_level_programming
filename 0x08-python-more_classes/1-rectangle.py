@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 """ Defines a class Rectangle"""
 
+
 class Rectangle:
     """ Class Rectangle with private width and height"""
-     def __init__(self, width=0, height=0):
+    def __init__(self, width=0, height=0):
         """ Initialize rectangles """
         self.width = width
         self.height = height

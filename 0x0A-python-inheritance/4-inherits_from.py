@@ -4,7 +4,6 @@ A module that inherits_from(obj, a_class)
 """
 
 
-
 def inherits_from(obj, a_class):
     """
     Method that returns true if an object is a subclass

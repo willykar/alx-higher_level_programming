@@ -5,17 +5,14 @@ A module that inherits_from(obj, a_class)
 
 
 def inherits_from(obj, a_class):
-    """
-    Method that returns true if an object is a subclass
-    of a_class, otherwise false
-
+     """Checks if an object is an an inherited instance of a class
     Args:
-        obj (any): The object to check
+        object : The object to check
         a_class (type): The class to match the type of object to
-
     Returns:
-        If object is an inherited instance of a_class return True
+        If object is an inherited instance of a_class return (True)
         Otherwise - False
     """
-
-    return(issubclass(type(obj), a_class) and type(obj) != a_class)
+    if issubclass(type(obj), a_class) and type(obj) != a_class:
+        return True
+    return False

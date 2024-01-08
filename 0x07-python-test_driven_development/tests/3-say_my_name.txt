@@ -1,0 +1,57 @@
+# 3-say_my_name.txt
+===========================
+
+This modules defines a function ``say_my_name(first_name, last_name="")``.
+
+How to use it
+=============
+
+``say_my_name(...)`` prints "My name is <first_name> <last_name>".
+
+import Module
+============
+
+
+    >>> say_my_name = __import__('3-say_my_name').say_my_name
+    >>> say_my_name("John", "Smith")
+    My name is John Smith
+
+================================================================
+
+    >>> say_my_name("Collins Matthew", "James II")
+    My name is Collins Matthew James II
+
+The parameter ```last_name``` is optional. If no last name is provided,an empty string is printed instead
+
+    >>> say_my_name("Bob")
+    My name is Bob
+
+Invalid Names
+=============
+
+The parameters ``first_name`` and ``last_name``` must be strings. Otherwise, a TypeError is raised
+
+    >>> say_my_name(6, "John")
+    Traceback (most recent call last):
+    TypeError: first_name must be a string
+
+
+    >>> say_my_name("Cars", ["Bmw", "Toyota", "VW"])
+    Traceback (most recent call last):
+    TypeError: last_name must be a string
+
+
+    >>> say_my_name({"Messi": 700, "Ronaldo": 700}, 5.6)
+    Traceback (most recent call last):
+    TypeError: first_name must be a string
+
+
+    >>> say_my_name(None)
+    Traceback (most recent call last):
+    TypeError: first_name must be a string
+
+At least one name must be provided
+
+    >>> say_my_name()
+    Traceback (most recent call last):
+    TypeError: say_my_name() missing 1 required positional argument: 'first_name'

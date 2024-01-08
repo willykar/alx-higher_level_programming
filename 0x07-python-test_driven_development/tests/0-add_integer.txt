@@ -1,114 +1,107 @@
-Integer addition module
-=======================
-
-Import module:
-=============
-	>>> add_integer = __import__('0-add_integer').add_integer
-
-The function adds 2 integers
-
-Operation:
-=========
-Arguments 'a' and 'b' must be integers or floats, otherwise raise a TypeError exception with the message 'a must be an integer' or 'b must be an integer
-
-No parameters provided
+The ``0-add_integer`` module
 ======================
 
-Test case #0: Test case without parameters
+Importing the function from the module:
+	>>> add_integer = __import__("0-add_integer").add_integer
 
-	>>> add_integer()
-	Traceback (most recent call last):
-	TypeError: add_integer() missing 1 required positional argument: 'a'
+Checking for module docstring:
+	 >>> m = __import__("0-add_integer").__doc__
+	 >>> len(m) > 1
+	 True
 
-Test case #1: Test case for an argument with no assigned value
+Checking for function docstring:
+	 >>> f = __import__("0-add_integer").add_integer.__doc__
+         >>> len(f) > 1
+         True
 
-	>>> add_integer(a, 50)
-	Traceback (most recent call last):
-	NameError: name 'a' is not defined
+Checking regular addition:
+	 >>> add_integer(2, 3)
+	 5
 
-Test case #2: Test case for using the default value of the parameter 'b'
+Checking positive with negative:
+	 >>> add_integer(2, -4)
+	 -2
 
-	>>> add_integer(2)
-	100
+Checking negative with positive:
+	 >>> add_integer(-6, 8)
+	 2
 
-Test case #3: Test case for using the default value of parameter 'b' with the float parameter 'a'
+Checking addition over multiple values:
+	 >>> [add_integer(i, i ** 2) for i in range(6)]
+	 [0, 2, 6, 12, 20, 30]
 
-	>>> add_integer(1.0, )
-	99
+Checking float with int:
+	 >>> add_integer(2.1, 4)
+	 6
 
-Test case #4: Test case between two integers
+Checking int with float:
+	 >>> add_integer(5, 7.8)
+	 12
 
-	>>> add_integer(1, 5)
-	6
+Checking both float:
+	 >>> add_integer(2.45, 3.1)
+	 5
 
-Test case #5: Test case between integer and float
+Checking for passed NaN:
+	 >>> add_integer(1, float('nan'))
+	 Traceback (most recent call last):
+	 ...
+	 ValueError: cannot convert float NaN to integer
 
-	>>> add_integer(10, 5.0)
-	15
+Checking for passed inf:
+	 >>> add_integer(1, float('inf'))
+	 Traceback (most recent call last):
+	 ...
+	 OverflowError: cannot convert float infinity to integer
 
-Test case #6: Test case between two floats
+Checking super long int:
+	 >>> add_integer(999999999999999999999999999999, 1)
+	 1000000000000000000000000000000
 
-	>>> add_integer(5.0, 5.0)
-	10
+Checking non-number with number:
+	 >>> add_integer([1], 2)
+	 Traceback (most recent call last):
+	 ...
+	 TypeError: a must be an integer
 
-Test case #7: Test case between float and integer
+Checking number with non-number:
+	 >>> add_integer(3, "2")
+	 Traceback (most recent call last):
+	 ...
+	 TypeError: b must be an integer
 
-	>>> add_integer(10.0, 2)
-	12
+Checking non-number with non-number:
+	 >>> add_integer((2,), {"key": "value"})
+         Traceback (most recent call last):
+         ...
+         TypeError: a must be an integer
 
-Test case #8: Test case between two negative floats
+Checking bool with number:
+	 >>> add_integer(True, 1)
+	 Traceback (most recent call last):
+         ...
+         TypeError: a must be an integer
 
-	>>> add_integer(-6.5, -6)
-	12
+Checking number with bool:
+	 >>> add_integer(0, False)
+         Traceback (most recent call last):
+         ...
+         TypeError: b must be an integer
 
-Test case #9: Test case between float and negative integer
+Checking no args:
+	 >>> add_integer()
+	 Traceback (most recent call last):
+	 ...
+	 TypeError: add_integer() missing 2 required positional arguments: 'a' and 'b'
 
-	>>> add_integer(20.5, -10)
-	10
+Checking one arg:
+	 >>> add_integer(1)
+	 Traceback (most recent call last):
+         ...
+	 TypeError: add_integer() missing 1 required positional argument: 'b'
 
-Test case #10: Test case between integer and infinity float
-
-	>>> add_integer(5, 1e400)
-	Traceback (most recent call last):
-	OverflowError: cannot convert float infinity to integer
-
-Test case #11: Test case between infinity float and negative integer
-
-	>>> add_integer(1e500, -10)
-	Traceback (most recent call last):
-	OverflowError: cannot convert float infinity to integer
-
-Non-Numbers
-===========
-
-Test case #12: Test case with the first parameter of type 'None'
-
-	>>> add_integer(None, 10)
-	Traceback (most recent call last):
-	TypeError: a must be an integer
-
-Test case #13: Test case with the second parameter of type 'None'
-
-	>>> add_integer(20, None)
-	Traceback (most recent call last):
-	TypeError: b must be an integer
-
-Test case #14: Test case with the first parameter of type 'list'
-
-	>>> add_integer([1, 2], 10)
-	Traceback (most recent call last):
-	TypeError: b must be an integer
-
-Test case #15: Test case with the second parameter of type 'str'
-
-	>>> add_integer(1, 'This is python')
-	Traceback (most recent call last):
-	TypeError: b must be an integer
-
-Return Types
-============
-
-Test case #16: Test case to check the returned integer type
-
-	>>> type(add_integer(5, 5))
-	<class 'int'>
+Checking more than 2 args:
+	 >>> add_integer(1, 2, 3)
+         Traceback (most recent call last):
+         ...
+         TypeError: add_integer() takes 2 positional arguments but 3 were given

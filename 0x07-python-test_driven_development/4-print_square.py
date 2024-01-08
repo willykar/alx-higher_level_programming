@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ print_square module"""
 
+
 def print_square(size):
     """Prints a square with the character #"""
     if type(size) is not int:

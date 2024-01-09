@@ -4,7 +4,7 @@
 
 
 def print_stats(size, status_codes):
-    """Print accumulated the matrices
+    """Computes metrics
 
     Arguments:
         size (int): The accumulated read file size.

@@ -1,34 +1,30 @@
 #!/usr/bin/python3
-"""Module matrix_divided method"""
+"""Defines a matrix division function"""
 
 
 def matrix_divided(matrix, div):
-    """A function that divides all elemnts of a matrix by div
+    """Divides all elements of a matrix
+
     Arguments:
-        matrix: list of lists containing int/ floats
-        div: number to divide matrix by
+        matrix (list): A list of lists of ints or floats.
+        div (int/float): The divisor
     Returns:
-        List: list of lists containing divided matrix
+        A new matrix representing the result of the division
     """
-    if not isinstance(div, (int, float)):
+    if (not isinstance(matrix, list) or matrix == [] or
+            not all(isinstance(row, list) for row in matrix) or
+            not all((isinstance(ele, int) or isinstance(ele, float))
+                    for ele in [num for row in matrix for num in row])):
+        raise TypeError("matrix must be a matrix (list of lists) of "
+                        "integers/floats")
+
+    if not all(len(row) == len(matrix[0]) for row in matrix):
+        raise TypeError("Each row of the matrix must have the same size")
+
+    if not isinstance(div, int) and not isinstance(div, float):
         raise TypeError("div must be a number")
-    if not isinstance(matrix, list) or len(matrix) == 0:
-        raise TypeError("matrix must be a matrix (list of lists) of \
-                        integers/floats.")
 
-    for row in matrix:
-        if not isinstance(row, list) or len(row) == 0:
-            raise TypeError("matrix must be a matrix (list of lists) of \
-                            integers/floats.")
-        if len(row) != len(matrix[0]):
-            raise TypeError("Each row of the matrix must have the same size")
-        for x in row:
-            if not isinstance(x, (int, float)):
-                raise TypeError("matrix must be a matrix (list of lists) of \
-                    integers/floats.")
-    return [[round(x / div, 2) for x in row] for row in matrix]
+    if div == 0:
+        raise ZeroDivisionError("division by zero")
 
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testfile("tests/2-matrix_divided.txt")
+    return ([list(map(lambda x: round(x / div, 2), row)) for row in matrix])

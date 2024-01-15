@@ -20,13 +20,13 @@ class Base:
             self.id = id
 
         else:
-            type(self).__nb_objects += 1
-            self.id = type(self).__nb_objects
+            Base.__nb_objects += 1
+            self.id = Base.__nb_objects
 
     @staticmethod
     def to_json_string(list_dictionaries):
         """Returns the JSON string representation of list_dictionaries"""
-        if list_dictionaries is None or len(list_dictionaries) == 0:
+        if list_dictionaries is None or list_dictionaries == []:
             return "[]"
         return json.dumps(list_dictionaries)
 
@@ -44,7 +44,7 @@ class Base:
     @staticmethod
     def from_json_string(json_string):
         """Returns the list of the JSON string representation"""
-        if json_string is None or len(json_string) == 0:
+        if json_string is None or json_string == "[]":
             return []
         else:
             return json.loads(json_string)
@@ -105,7 +105,7 @@ class Base:
                 else:
                     fieldnames = ["id", "size", "x", "y"]
                 list_dicts = csv.DictReader(cfile, fieldnames=fieldnames)
-                list_dicts = [dict([k, int(v)] for k, v in d.items())
+                list_dicts = [dict([k, int(v)] for k, v in dic.items())
                               for dic in list_dicts]
                 return [cls.create(**dic) for dic in list_dicts]
         except IOError:

@@ -97,7 +97,7 @@ class Base:
     def load_from_file_csv(cls):
         """Return a list of classes instantiated from a CSV file
         """
-        filename = f"cls.__name__.csv"
+        filename = f"{cls.__name__}.csv"
         try:
             with open(filename, "r", newline="") as cfile:
                 if cls.__name__ == "Rectangle":

@@ -69,7 +69,6 @@ class Rectangle(Base):
             raise ValueError("y must be >= 0")
         self.__y = value
 
-
     def area(self):
         """Method that returns area of the rectangle"""
         return self.width * self.height
@@ -83,7 +82,8 @@ class Rectangle(Base):
 
     def __str__(self):
         """string representation of __str__ object"""
-        return f"[Rectangle] ({self.id}) {self.x}/{self.y} - {self.width}/{self.height}"
+        return f"[Rectangle] ({self.id})"
+    "{self.x}/{self.y} - {self.width}/{self.height}"
 
     def update(self, *args, **kwargs):
         """assigns an argument to each attributes"""
@@ -108,7 +108,8 @@ class Rectangle(Base):
                 for key, value in kwargs.items():
                     if key == "id":
                         if value is None:
-                            self.__init__(self.width, self.width, self.x, self.y)
+                            self.__init__(self.width,
+                                          self.width, self.x, self.y)
                         else:
                             self.id = value
 
@@ -121,11 +122,12 @@ class Rectangle(Base):
                     elif key == "y":
                         self.y = value
 
-
     def to_dictionary(self):
         """A method that returns a dictionary representation of a rectangle"""
-        return {"x" : self.x, "y" : self.y, "id" : self.id, "height" : self.height, "width" : self.width}
+        return {"x": self.x, "y": self.y, "id": self.id,
+                "height": self.height, "width": self.width}
 
     def __str__(self):
         """Returns str representation of the Rectangle"""
-        return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y, self.width, self.height)
+        return "[Rectangle] ({}) {}/{} - {}/{}"
+    .format(self.iid, self.x, self.y, self.width, self.height)

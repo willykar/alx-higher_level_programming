@@ -56,7 +56,8 @@ class Square(Rectangle):
                 for key, value in kwargs.items():
                     if key == "id":
                         if value is None:
-                            self.__init__(self.width, self.width, self.x, self.y)
+                            self.__init__(self.width, self.width,
+                                          self.x, self.y)
                         else:
                             self.id = value
                     elif key == "size":
@@ -67,11 +68,10 @@ class Square(Rectangle):
                     elif key == "y":
                         self.y = value
 
-
     def __str__(self):
         """str representation"""
         return f"[square] ({self.id}) {self.x}/{self.y} - {self.width}"
 
     def to_dictionary(self):
         """Returns the dictionary representation of a Square"""
-        return {"id" : self.id, "x" : self.x, "size" : self.width, "y" : self.y}
+        return {"id": self.id, "x": self.x, "size": self.width, "y": self.y}

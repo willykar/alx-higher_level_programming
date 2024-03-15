@@ -9,9 +9,9 @@ if __name__ == "__main__":
                          passwd=sys.argv[2], db=sys.argv[3], port=3306)
     cur = db.cursor()
     usr_input = sys.argv[4]
-    cur.execute("""SELECT cities.name FROM cities INNER JOIN states ON
-                states.id=cities.state_idWHERE states.name=%s""",
-                (usr_input, ))
+    cur.execute("""SELECT cities.name FROM states INNER JOIN cities ON
+                states.id=cities.state_id WHERE states.name = %s
+                ORDER BY cities.id ASC""", (usr_input, ))
     rows = cur.fetchall()
     for row in rows:
         print(row)

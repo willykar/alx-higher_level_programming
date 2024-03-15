@@ -12,9 +12,8 @@ if __name__ == "__main__":
     cur.execute("""SELECT cities.name FROM states INNER JOIN cities ON
                 states.id=cities.state_id WHERE states.name = %s
                 ORDER BY cities.id ASC""", (usr_input, ))
-    rows = cur.fetchall()
-    for row in rows:
-        print(row)
+    data = cur.fetchall()
+    print(", ".join([city[0] for city in data]))
 
     cur.close()
     db.close()

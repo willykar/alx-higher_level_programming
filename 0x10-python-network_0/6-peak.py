@@ -12,13 +12,22 @@ def find_peak(list_of_integers):
     Return:
         int(the peak integer(s))
     """
-    left, right = 0, len(list_of_integers) - 1
+    if not list_of_integers:
+        raise ValueError("List cannot be empty")
 
-    while left < right:
-        mid = (left + right) // 2
+    low = 0
+    high = len(list_of_integers) - 1
 
-        if list_of_integers[mid] > list_of_integers[mid + 1]:
-            right = mid
+    while low < high:
+        mid = (low + high) // 2
+        if list_of_integers[mid] > list_of_integers[mid - 1]
+        and list_of_integers[mid] > list_of_integers[mid + 1]:
+            return list_of_integers[mid]
+
+        elif list_of_integers[mid] < list_of_integers[mid + 1]:
+            low = mid + 1
+
         else:
-            left = mid + 1
-    return left
+            high = mid - 1
+
+    return list_of_integers[low]

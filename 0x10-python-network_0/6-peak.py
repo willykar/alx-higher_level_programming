@@ -12,12 +12,13 @@ def find_peak(list_of_integers):
     Return:
         int(the peak integer(s))
     """
-    start = 0
-    end = len(list_of_integers) - 1
-    while start < end:
-        mid = (start + end) // 2
-        if list_of_integers[mid] < list_of_integers[mid + 1]:
-            start = mid + 1
+    left, right = 0, len(list_of_integers) - 1
+
+    while left < right:
+        mid = (left + right) // 2
+
+        if list_of_integers[mid] > list_of_integers[mid + 1]:
+            right = mid
         else:
-            end = mid
-    return start
+            left = mid + 1
+    return left

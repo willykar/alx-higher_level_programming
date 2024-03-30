@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ a status module to fetch an url"""
-from import urllib.request import Request, urlopen
+from urllib.request import Request, urlopen
 
 
 if __name__ == "__main__":

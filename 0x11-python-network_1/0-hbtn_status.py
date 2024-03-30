@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """ a status module to fetch an url"""
-from urllib.request import Request, urlopen
+import urllib.request
 
 
 if __name__ == "__main__":
-    req = Request('https://alx-intranet.hbtn.io/status')
-    with urlopen(req) as response:
+    req = 'https://alx-intranet.hbtn.io/status'
+    with urllib.request.urlopen(req) as response:
         data = response.read().decode('utf-8')
 
     print("Body response:")

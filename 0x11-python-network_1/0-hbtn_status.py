@@ -3,7 +3,7 @@
 from urllib.request import Request, urlopen
 
 
-if __name == "__main__":
+if __name__ == "__main__":
     req = Request('https://alx-intranet.hbtn.io/status')
     with urlopen(req) as response:
         data = response.read().decode('utf-8')

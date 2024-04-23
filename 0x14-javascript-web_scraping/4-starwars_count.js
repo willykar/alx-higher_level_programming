@@ -2,27 +2,25 @@
 // a script that prints the number of movies where the character "wedge Antillies is present
 
 const request = require('request');
+const url = process.argv[2];
 
-const url = process.argv[2] || 'https://swapi-api.alx-tools.com/api/films/'; // Default URL
-const characterId = 18;
+function handleError (error) {
+  console.log(error);
+}
 
-request(url, (error, response, body) => {
+function countCharacters (movies) {
+  return movies.reduce((total, movie) => {
+    return total + movie.characters.filter(character => character.includes('people/18/')).length;
+  }, 0);
+}
+
+request.get(url, (error, response, body) => {
   if (error) {
-    console.error('Error:', error);
+    handleError(error);
   } else {
-    const data = JSON.parse(body);
-    const moviesWithWedge = countMoviesWithCharacter(data.results, characterId);
-    console.log(moviesWithWedge);
+    const movies = JSON.parse(body).results;
+    const count = countCharacters(movies);
+
+    console.log(count);
   }
 });
-
-function countMoviesWithCharacter(films, characterId) {
-  let count = 0;
-  for (const film of films) {
-    const characters = film.characters || [];
-    if (characters.includes(`https://swapi-api.alx-tools.com/api/people/${characterId}/`)) {
-      count++;
-    }
-  }
-  return count;
-}
